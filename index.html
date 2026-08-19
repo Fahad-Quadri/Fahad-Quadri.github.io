@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syed Fahad Quadri — SOC Analyst Portfolio</title>
+<style>
+  :root {
+    --navy: #12233f;
+    --navy-2: #1f3864;
+    --accent: #2fb6a3;
+    --accent-dark: #1f8f7f;
+    --ink: #1c2430;
+    --muted: #5b6472;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --border: #e4e7ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+  }
+  a { color: var(--accent-dark); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0 0 6px;
+    font-size: 2.4rem;
+    letter-spacing: 0.5px;
+  }
+  .hero .role {
+    font-size: 1.05rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero .tagline {
+    max-width: 640px;
+    margin: 0 auto 24px;
+    color: #d7dde6;
+    font-size: 1.02rem;
+  }
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    font-size: 0.92rem;
+  }
+  .contact-row a, .contact-row span { color: #e9edf3; }
+  .contact-row a:hover { color: var(--accent); }
+  .badge {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(47,182,163,0.15);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  section { padding: 48px 0; }
+  section h2 {
+    font-size: 1.4rem;
+    color: var(--navy-2);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 24px;
+  }
+
+  .summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px 28px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .skill-card h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: var(--navy-2);
+  }
+  .skill-card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .project-head {
+    background: var(--navy);
+    color: #fff;
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .project-head h3 { margin: 0; font-size: 1.15rem; }
+  .project-head a {
+    color: #fff;
+    background: var(--accent-dark);
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .project-head a:hover { text-decoration: none; background: var(--accent); }
+  .project-body { padding: 22px 26px 26px; }
+  .project-body p.lead { color: var(--muted); margin-top: 0; }
+  .project-body h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy-2);
+    margin: 20px 0 8px;
+  }
+  .project-body ul { margin: 0; padding-left: 20px; }
+  .project-body li { margin-bottom: 6px; }
+  .tool-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .tool-tags span {
+    background: #eef6f5;
+    color: var(--accent-dark);
+    border: 1px solid #cfe9e4;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .status-note {
+    margin-top: 18px;
+    background: #fff8ec;
+    border: 1px solid #f0dcae;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: #7a5a10;
+  }
+
+  .exp-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+  .exp-item .exp-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .exp-item h3 { margin: 0; font-size: 1.02rem; color: var(--navy-2); }
+  .exp-item .exp-dates { color: var(--muted); font-size: 0.85rem; font-weight: 600; }
+  .exp-item .exp-org { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; font-style: italic; }
+  .exp-item ul { margin: 8px 0 0; padding-left: 20px; font-size: 0.93rem; }
+  .exp-item li { margin-bottom: 4px; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cert-card, .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .cert-card h4, .edu-card h4 { margin: 0 0 4px; font-size: 0.95rem; color: var(--navy-2); }
+  .cert-card p, .edu-card p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+  .status-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 999px;
+    margin-top: 6px;
+  }
+  .pill-done { background: #e6f6ec; color: #1f8a4c; }
+  .pill-progress { background: #fdf1de; color: #a86a10; }
+
+  footer {
+    background: var(--navy);
+    color: #cfd6e1;
+    text-align: center;
+    padding: 36px 24px 44px;
+  }
+  footer h2 { color: #fff; border: none; margin-bottom: 10px; font-size: 1.3rem; }
+  footer p { color: #b7c0cf; max-width: 480px; margin: 0 auto 18px; }
+  .footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .footer-links a {
+    color: #fff;
+    background: var(--accent-dark);
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .footer-links a:hover { background: var(--accent); text-decoration: none; }
+
+  @media (max-width: 620px) {
+    .two-col { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Syed Fahad Quadri</h1>
+    <div class="role">SOC Analyst</div>
+    <p class="tagline">Cybersecurity professional focused on alert triage, vulnerability assessment, and incident response — with a self-built home lab documenting hands-on network security engineering.</p>
+    <div class="contact-row">
+      <span>Kansas City, Missouri, USA</span>
+      <a href="mailto:syedfahadquadri09@gmail.com">syedfahadquadri09@gmail.com</a>
+      <a href="tel:8164990384">816-499-0384</a>
+      <a href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="badge">Open to Opportunities</div>
+  </div>
+
+  <div class="container">
+
+    <section id="summary">
+      <h2>About</h2>
+      <div class="summary-card">
+        SOC analyst with hands-on experience across two security-monitoring roles, spanning alert triage, incident
+        investigation, and vulnerability assessment in both clinical and IT environments. Proficient with Splunk SIEM
+        for daily alert triage, Wireshark and Nmap for network traffic analysis, and Nessus/OpenVAS for vulnerability
+        scanning. Beyond the day job, I build and document my own lab infrastructure — including a virtualized
+        pfSense network, custom firewall rules, offensive scanning with Kali Linux, and an in-progress Suricata IDS
+        deployment — to keep hands-on skills sharp between roles. Programming/scripting background in Python, Java,
+        and C++. Pursuing CompTIA Security+ (exam scheduled September 2026).
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Core Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><h3>SIEM &amp; Alert Triage</h3><p>Splunk SIEM, Alert Triage, Log Analysis, Threat/IOC Analysis</p></div>
+        <div class="skill-card"><h3>Security Operations</h3><p>Incident Response, Vulnerability Assessment, Forensic Data Collection, Security Awareness Training</p></div>
+        <div class="skill-card"><h3>Security Tools</h3><p>Wireshark, Nmap, pfSense, Nessus, OpenVAS, Suricata</p></div>
+        <div class="skill-card"><h3>Networking</h3><p>Network Design, Configuration &amp; Troubleshooting, Firewall Management, TCP/IP Fundamentals</p></div>
+        <div class="skill-card"><h3>Programming/Scripting</h3><p>Python, Java, C++</p></div>
+        <div class="skill-card"><h3>Operating Systems</h3><p>Linux, Windows, Kali Linux</p></div>
+      </div>
+    </section>
+
+    <section id="project">
+      <h2>Featured Project</h2>
+      <div class="project-card">
+        <div class="project-head">
+          <h3>Home Lab — Network Security Monitoring</h3>
+          <a href="https://github.com/Fahad-Quadri/Home-lab-network-security" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+        <div class="project-body">
+          <p class="lead">A virtualized network security lab built from scratch to practice router/firewall
+          configuration, network segmentation, offensive scanning, and intrusion detection — built as hands-on study
+          material alongside CompTIA Security+ prep.</p>
+
+          <h4>Architecture</h4>
+          <ul>
+            <li>pfSense CE 2.7.2 configured as router/firewall — WAN via NAT, LAN on an isolated VirtualBox internal network</li>
+            <li>Ubuntu Server client VM on the same LAN, DHCP-leased from pfSense</li>
+            <li>Verified end-to-end internet routing (0% packet loss on outbound ping tests)</li>
+          </ul>
+
+          <h4>Firewall Rule Engineering</h4>
+          <ul>
+            <li>Wrote and deployed a custom LAN firewall rule to block ICMP traffic</li>
+            <li>Validated enforcement with a failed-ping test against the rule</li>
+          </ul>
+
+          <h4>Offensive Testing</h4>
+          <ul>
+            <li>Added a Kali Linux VM to the lab network</li>
+            <li>Ran Nmap host discovery and service scans against lab systems and documented findings</li>
+          </ul>
+
+          <h4>Intrusion Detection (In Progress)</h4>
+          <ul>
+            <li>Deployed Suricata IDS on pfSense via shell install after a GUI package-manager failure</li>
+            <li>Diagnosed an inline/IPS divert-socket crash caused by VirtualBox's networking limitations</li>
+            <li>Currently validating a Legacy Blocking Mode fix and re-testing detection against Nmap scan traffic</li>
+          </ul>
+
+          <div class="tool-tags">
+            <span>VirtualBox</span><span>pfSense</span><span>Ubuntu Server</span><span>Kali Linux</span>
+            <span>Nmap</span><span>Wireshark</span><span>Suricata</span><span>Splunk</span>
+          </div>
+
+          <div class="status-note">
+            This project is actively evolving — documented step-by-step on GitHub, including the troubleshooting
+            process itself (not just the finished result).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>SOC Analyst Intern</h3>
+          <span class="exp-dates">Jan 2026 – Jun 2026</span>
+        </div>
+        <div class="exp-org">Unify Decoders LLC</div>
+        <ul>
+          <li>Triaged and analyzed 40+ daily security alerts in Splunk SIEM, achieving 90%+ accuracy in threat identification</li>
+          <li>Assisted with vulnerability assessments on 60+ network systems using Nessus and OpenVAS</li>
+          <li>Performed network traffic analysis using Wireshark and Nmap to investigate suspicious activity and identify IOCs</li>
+          <li>Supported response to security incidents, including forensic data collection and post-incident documentation</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>Security Analyst</h3>
+          <span class="exp-dates">Aug 2022 – Nov 2023</span>
+        </div>
+        <div class="exp-org">HHC Clinic</div>
+        <ul>
+          <li>Monitored and triaged 50+ security alerts daily using Splunk SIEM</li>
+          <li>Performed vulnerability scans on 150+ devices using Nessus and OpenVAS</li>
+          <li>Supported forensic data collection and documentation for phishing incidents; led staff security awareness training</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top">
+          <h3>Cybersecurity Intern</h3>
+          <span class="exp-dates">Jan 2022 – Jun 2022</span>
+        </div>
+        <div class="exp-org">AICTE</div>
+        <ul>
+          <li>Completed hands-on training in network defense, threat identification, and secure system practices</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="credentials">
+      <h2>Education &amp; Certifications</h2>
+      <div class="two-col">
+        <div class="edu-card">
+          <h4>M.S., Cybersecurity Management</h4>
+          <p>Lindsey Wilson College, Tennessee, USA | 2024–2025</p>
+        </div>
+        <div class="edu-card">
+          <h4>B.S., Computer Science</h4>
+          <p>Osmania University, Hyderabad, India | 2019–2023</p>
+        </div>
+        <div class="cert-card">
+          <h4>CompTIA Security+</h4>
+          <p>Exam scheduled September 2026</p>
+          <span class="status-pill pill-progress">In Progress</span>
+        </div>
+        <div class="cert-card">
+          <h4>Google Cybersecurity Professional Certificate</h4>
+          <p>Issued by Google / Coursera</p>
+          <span class="status-pill pill-done">Completed</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <h2>Let's Connect</h2>
+    <p>Open to entry-level SOC, MDR, and network security analyst roles. Reach out any time.</p>
+    <div class="footer-links">
+      <a href="mailto:syedfahadquadri09@gmail.com">Email Me</a>
+      <a href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>
