@@ -312,16 +312,24 @@
             <li>Ran Nmap host discovery and service scans against lab systems and documented findings</li>
           </ul>
 
-          <h4>Intrusion Detection (In Progress)</h4>
+          <h4>Intrusion Detection</h4>
           <ul>
             <li>Deployed Suricata IDS on pfSense via shell install after a GUI package-manager failure</li>
-            <li>Diagnosed an inline/IPS divert-socket crash caused by VirtualBox's networking limitations</li>
-            <li>Currently validating a Legacy Blocking Mode fix and re-testing detection against Nmap scan traffic</li>
+            <li>Diagnosed a persistent inline/IPS divert-socket crash across four independent start methods, isolating it to a VirtualBox virtual NIC incompatibility</li>
+            <li>Closed out as a documented environment limitation with a clear root-cause writeup, rather than forcing an indefinite fix</li>
+          </ul>
+
+          <h4>Active Directory & Identity Management</h4>
+          <ul>
+            <li>Built a Windows Server 2025 Active Directory domain controller from scratch, promoting a new forest (fahadlab.local)</li>
+            <li>Joined a Linux client to the domain via realmd/SSSD, resolving a DNS resolver quirk and a Kerberos preauthentication failure</li>
+            <li>Configured Group Policy (domain password policy) and verified end-to-end AD/Linux identity integration</li>
           </ul>
 
           <div class="tool-tags">
             <span>VirtualBox</span><span>pfSense</span><span>Ubuntu Server</span><span>Kali Linux</span>
             <span>Nmap</span><span>Wireshark</span><span>Suricata</span><span>Splunk</span>
+            <span>Windows Server</span><span>Active Directory</span><span>PowerShell</span>
           </div>
 
           <div class="status-note">
