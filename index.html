@@ -3,421 +3,579 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Syed Fahad Quadri — SOC Analyst Portfolio</title>
+<title>Syed Fahad Quadri — Security Analyst</title>
+<meta name="description" content="Syed Fahad Quadri — SOC / Security Analyst in Kansas City, MO. Splunk SIEM triage, phishing and BEC investigation, vulnerability assessment, and a documented enterprise home lab.">
+<meta property="og:title" content="Syed Fahad Quadri — Security Analyst">
+<meta property="og:description" content="SOC / Security Analyst: alert triage, phishing & BEC investigation, vulnerability assessment, detection engineering.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fahad-quadri.github.io/">
+<meta name="theme-color" content="#0b0f14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 8 13v17c0 15 10 26 24 30 14-4 24-15 24-30V13Z' fill='%2300c896'/%3E%3Cpath d='m22 32 7 7 14-15' stroke='%230b0f14' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #12233f;
-    --navy-2: #1f3864;
-    --accent: #2fb6a3;
-    --accent-dark: #1f8f7f;
-    --ink: #1c2430;
-    --muted: #5b6472;
-    --bg: #f6f7f9;
-    --card: #ffffff;
-    --border: #e4e7ec;
+    --bg: #0b0f14;
+    --bg-2: #0f151c;
+    --panel: #121a23;
+    --panel-2: #16202b;
+    --line: #223040;
+    --text: #e6edf3;
+    --muted: #8b99a8;
+    --dim: #5c6b7a;
+    --accent: #00c896;
+    --accent-2: #36e0b4;
+    --accent-soft: rgba(0, 200, 150, 0.12);
+    --warn: #f2b84b;
+    --danger: #ff6b6b;
+    --blue: #58a6ff;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius: 14px;
+    --max: 1080px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--ink);
     background: var(--bg);
-    line-height: 1.55;
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent-dark); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-2); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: var(--mono); }
 
-  .hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
-    color: #fff;
-    padding: 64px 24px 56px;
-    text-align: center;
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 15, 20, 0.82);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  .hero h1 {
-    margin: 0 0 6px;
-    font-size: 2.4rem;
-    letter-spacing: 0.5px;
-  }
-  .hero .role {
-    font-size: 1.05rem;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-  .hero .tagline {
-    max-width: 640px;
-    margin: 0 auto 24px;
-    color: #d7dde6;
-    font-size: 1.02rem;
-  }
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 18px;
-    font-size: 0.92rem;
-  }
-  .contact-row a, .contact-row span { color: #e9edf3; }
-  .contact-row a:hover { color: var(--accent); }
-  .badge {
-    display: inline-block;
-    margin-top: 20px;
-    background: rgba(47,182,163,0.15);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 16px;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  .brand { font-family: var(--mono); font-weight: 700; color: var(--text); font-size: 0.95rem; white-space: nowrap; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; font-size: 0.9rem; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  @media (max-width: 760px) { .nav-links { display: none; } }
 
-  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: 72px 0 56px; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 300px at 85% 10%, rgba(0, 200, 150, 0.16), transparent 70%),
+      radial-gradient(500px 260px at 5% 90%, rgba(88, 166, 255, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at 70% 30%, #000 10%, transparent 65%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 10%, transparent 65%);
+    opacity: 0.35; pointer-events: none;
+  }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 44px; align-items: center; }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid rgba(0, 200, 150, 0.35);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(0,200,150,.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(0,200,150,0); } 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0); } }
+  h1 { font-size: clamp(2.3rem, 5.2vw, 3.5rem); line-height: 1.08; margin: 0 0 14px; letter-spacing: -0.02em; font-weight: 800; }
+  h1 .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2) 60%, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lede { color: var(--muted); font-size: 1.08rem; max-width: 540px; margin: 0 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 0.92rem;
+    border: 1px solid var(--line); color: var(--text); background: var(--panel);
+    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--text); }
+  .btn.primary { background: var(--accent); color: #04110c; border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-2); color: #04110c; }
+  .btn svg { width: 16px; height: 16px; }
 
-  section { padding: 48px 0; }
-  section h2 {
-    font-size: 1.4rem;
-    color: var(--navy-2);
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 10px;
-    margin-bottom: 24px;
-  }
+  /* terminal */
+  .term { background: #0a0e13; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 24px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(0,200,150,.05); overflow: hidden; }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+  .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
+  .term-bar span { margin-left: 8px; font-family: var(--mono); font-size: 0.75rem; color: var(--dim); }
+  .term pre { margin: 0; padding: 18px 20px 22px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.75; color: var(--text); white-space: pre-wrap; min-height: 300px; }
+  .t-p { color: var(--accent); } .t-k { color: var(--blue); } .t-s { color: #d2a8ff; } .t-c { color: var(--dim); } .t-w { color: var(--warn); } .t-r { color: var(--danger); }
+  .caret { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
 
-  .summary-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 26px 28px;
-    font-size: 1rem;
-    color: var(--ink);
-  }
+  /* ---------- stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 56px; position: relative; z-index: 1; }
+  .stat { background: var(--bg-2); padding: 22px 20px; }
+  .stat b { display: block; font-family: var(--mono); font-size: 2rem; color: var(--accent); line-height: 1.1; }
+  .stat span { color: var(--muted); font-size: 0.86rem; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 16px;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    border-radius: 8px;
-    padding: 16px 18px;
-  }
-  .skill-card h3 {
-    margin: 0 0 8px;
-    font-size: 0.95rem;
-    color: var(--navy-2);
-  }
-  .skill-card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+  /* ---------- sections ---------- */
+  section { padding: 76px 0; border-top: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); color: var(--accent); font-size: 0.8rem; letter-spacing: 0.06em; margin-bottom: 8px; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin: 0 0 12px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); max-width: 640px; margin: 0 0 36px; }
 
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .project-head {
-    background: var(--navy);
-    color: #fff;
-    padding: 20px 26px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .project-head h3 { margin: 0; font-size: 1.15rem; }
-  .project-head a {
-    color: #fff;
-    background: var(--accent-dark);
-    padding: 7px 14px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  .project-head a:hover { text-decoration: none; background: var(--accent); }
-  .project-body { padding: 22px 26px 26px; }
-  .project-body p.lead { color: var(--muted); margin-top: 0; }
-  .project-body h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--navy-2);
-    margin: 20px 0 8px;
-  }
-  .project-body ul { margin: 0; padding-left: 20px; }
-  .project-body li { margin-bottom: 6px; }
-  .tool-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-  .tool-tags span {
-    background: #eef6f5;
-    color: var(--accent-dark);
-    border: 1px solid #cfe9e4;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 999px;
-  }
-  .status-note {
-    margin-top: 18px;
-    background: #fff8ec;
-    border: 1px solid #f0dcae;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 0.88rem;
-    color: #7a5a10;
-  }
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p { color: #c3ccd6; margin-top: 0; }
+  .facts { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 20px; }
+  .facts div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 0.9rem; }
+  .facts div:last-child { border-bottom: 0; }
+  .facts dt { color: var(--dim); font-family: var(--mono); font-size: 0.8rem; }
+  .facts dd { margin: 0; text-align: right; }
 
-  .exp-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 22px;
-    margin-bottom: 14px;
-  }
-  .exp-item .exp-top {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-  .exp-item h3 { margin: 0; font-size: 1.02rem; color: var(--navy-2); }
-  .exp-item .exp-dates { color: var(--muted); font-size: 0.85rem; font-weight: 600; }
-  .exp-item .exp-org { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; font-style: italic; }
-  .exp-item ul { margin: 8px 0 0; padding-left: 20px; font-size: 0.93rem; }
-  .exp-item li { margin-bottom: 4px; }
+  /* ---------- lab ---------- */
+  .lab { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; }
+  @media (max-width: 900px) { .lab { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .topo svg { width: 100%; height: auto; display: block; }
+  .topo text { font-family: var(--mono); }
+  .flow { stroke-dasharray: 5 6; animation: dash 1.4s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -22; } }
+  .ts { list-style: none; margin: 0; padding: 0; }
+  .ts li { position: relative; padding: 0 0 18px 26px; border-left: 1px solid var(--line); margin-left: 6px; }
+  .ts li:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .ts li::before { content: ""; position: absolute; left: -6px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--warn); }
+  .ts li.ok::before { border-color: var(--accent); }
+  .ts b { display: block; font-size: 0.95rem; }
+  .ts span { color: var(--muted); font-size: 0.87rem; }
+  .ts code, .card code { font-family: var(--mono); font-size: 0.8em; background: var(--panel-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 5px; color: var(--accent-2); }
+  .lab-foot { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .cert-card, .edu-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-  }
-  .cert-card h4, .edu-card h4 { margin: 0 0 4px; font-size: 0.95rem; color: var(--navy-2); }
-  .cert-card p, .edu-card p { margin: 0; font-size: 0.85rem; color: var(--muted); }
-  .status-pill {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 2px 9px;
-    border-radius: 999px;
-    margin-top: 6px;
-  }
-  .pill-done { background: #e6f6ec; color: #1f8a4c; }
-  .pill-progress { background: #fdf1de; color: #a86a10; }
+  /* ---------- projects ---------- */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 960px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; transition: transform .2s ease, border-color .2s ease; }
+  .card:hover { transform: translateY(-3px); border-color: rgba(0, 200, 150, 0.5); }
+  .card .ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 14px; }
+  .card .ico svg { width: 20px; height: 20px; }
+  .card h3 { margin: 0 0 8px; font-size: 1.08rem; }
+  .card p { color: var(--muted); font-size: 0.9rem; margin: 0 0 16px; flex: 1; }
+  .card .more { font-family: var(--mono); font-size: 0.82rem; margin-top: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: var(--mono); font-size: 0.72rem; color: #b8c4d0; background: var(--panel-2); border: 1px solid var(--line); padding: 3px 9px; border-radius: 999px; }
+  .card pre { font-family: var(--mono); font-size: 0.72rem; background: #0a0e13; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 0 0 14px; color: #c3ccd6; overflow-x: auto; }
 
-  footer {
-    background: var(--navy);
-    color: #cfd6e1;
-    text-align: center;
-    padding: 36px 24px 44px;
-  }
-  footer h2 { color: #fff; border: none; margin-bottom: 10px; font-size: 1.3rem; }
-  footer p { color: #b7c0cf; max-width: 480px; margin: 0 auto 18px; }
-  .footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .footer-links a {
-    color: #fff;
-    background: var(--accent-dark);
-    padding: 9px 18px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  .footer-links a:hover { background: var(--accent); text-decoration: none; }
+  /* ---------- experience ---------- */
+  .timeline { position: relative; }
+  .job { display: grid; grid-template-columns: 190px 1fr; gap: 28px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .job:last-child { border-bottom: 0; }
+  @media (max-width: 720px) { .job { grid-template-columns: 1fr; gap: 6px; } }
+  .job .when { font-family: var(--mono); font-size: 0.82rem; color: var(--dim); padding-top: 3px; }
+  .job h3 { margin: 0; font-size: 1.12rem; }
+  .job .org { color: var(--accent); font-size: 0.92rem; margin: 2px 0 10px; }
+  .job ul { margin: 0; padding-left: 18px; color: #c3ccd6; font-size: 0.93rem; }
+  .job li { margin-bottom: 6px; }
+  .job li::marker { color: var(--accent); }
 
-  @media (max-width: 620px) {
-    .two-col { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 1.9rem; }
+  /* ---------- skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .skills { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .skills { grid-template-columns: 1fr; } }
+  .skill h3 { font-size: 0.95rem; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  .skill h3::before { content: "▸"; color: var(--accent); font-family: var(--mono); }
+
+  /* ---------- creds ---------- */
+  .creds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .creds { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .creds { grid-template-columns: 1fr; } }
+  .cred h3 { font-size: 0.98rem; margin: 0 0 4px; }
+  .cred p { color: var(--muted); font-size: 0.86rem; margin: 0 0 12px; }
+  .pill { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; display: inline-block; }
+  .pill.done { background: var(--accent-soft); color: var(--accent); }
+  .pill.prog { background: rgba(242, 184, 75, 0.12); color: var(--warn); }
+  .pill.edu { background: rgba(88, 166, 255, 0.12); color: var(--blue); }
+
+  /* ---------- contact ---------- */
+  .contact { text-align: center; }
+  .contact .sub { margin-left: auto; margin-right: auto; }
+  .contact .cta { justify-content: center; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 34px; color: var(--dim); font-size: 0.82rem; font-family: var(--mono); text-align: center; }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
 
-  <div class="hero">
-    <h1>Syed Fahad Quadri</h1>
-    <div class="role">SOC Analyst</div>
-    <p class="tagline">Cybersecurity professional focused on alert triage, vulnerability assessment, and incident response — with a self-built home lab documenting hands-on network security engineering.</p>
-    <div class="contact-row">
-      <span>Kansas City, Missouri, USA</span>
-      <a href="mailto:syedfahadquadri09@gmail.com">syedfahadquadri09@gmail.com</a>
-      <a href="tel:8164990384">816-499-0384</a>
-      <a href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">GitHub</a>
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">fahad<span>@</span>soc:~$</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#lab">Lab</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="badge">Open to Opportunities</div>
   </div>
+</nav>
 
-  <div class="container">
-
-    <section id="summary">
-      <h2>About</h2>
-      <div class="summary-card">
-        SOC analyst with hands-on experience across two security-monitoring roles, spanning alert triage, incident
-        investigation, and vulnerability assessment in both clinical and IT environments. Proficient with Splunk SIEM
-        for daily alert triage, Wireshark and Nmap for network traffic analysis, and Nessus/OpenVAS for vulnerability
-        scanning. Beyond the day job, I build and document my own lab infrastructure — including a virtualized
-        pfSense network, custom firewall rules, offensive scanning with Kali Linux, and an in-progress Suricata IDS
-        deployment — to keep hands-on skills sharp between roles. Programming/scripting background in Python, Java,
-        and C++. Pursuing CompTIA Security+ (exam scheduled September 2026).
-      </div>
-    </section>
-
-    <section id="skills">
-  <h2>Core Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-card"><h3>Security Operations &amp; SIEM</h3><p>Splunk SIEM, Microsoft Sentinel, Alert Triage, Incident Response, Threat Hunting, MITRE ATT&amp;CK, Vulnerability Assessment</p></div>
-    <div class="skill-card"><h3>Security Tools</h3><p>Wireshark, Nmap, pfSense, Nessus, OpenVAS, Suricata, CrowdStrike, SentinelOne</p></div>
-    <div class="skill-card"><h3>Networking</h3><p>TCP/IP, Firewall Management, Network Segmentation, DNS Analysis</p></div>
-    <div class="skill-card"><h3>Cloud &amp; Identity</h3><p>Microsoft Azure, AWS, GCP </p></div>
-    <div class="skill-card"><h3>Programming/Scripting</h3><p>Python, Bash, PowerShell, C++</p></div>
-    <div class="skill-card"><h3>Operating Systems</h3><p>Linux, Windows, Kali Linux</p></div>
-  </div>
-    </section>
-  
-
-    <section id="project">
-      <h2>Featured Project</h2>
-      <div class="project-card">
-        <div class="project-head">
-          <h3>Home Lab — Network Security Monitoring</h3>
-          <a href="https://github.com/Fahad-Quadri/Home-lab-network-security" target="_blank" rel="noopener">View on GitHub →</a>
-        </div>
-        <div class="project-body">
-          <p class="lead">A virtualized network security lab built from scratch to practice router/firewall
-          configuration, network segmentation, offensive scanning, and intrusion detection — built as hands-on study
-          material alongside CompTIA Security+ prep.</p>
-
-          <h4>Architecture</h4>
-          <ul>
-            <li>pfSense CE 2.7.2 configured as router/firewall — WAN via NAT, LAN on an isolated VirtualBox internal network</li>
-            <li>Ubuntu Server client VM on the same LAN, DHCP-leased from pfSense</li>
-            <li>Verified end-to-end internet routing (0% packet loss on outbound ping tests)</li>
-          </ul>
-
-          <h4>Firewall Rule Engineering</h4>
-          <ul>
-            <li>Wrote and deployed a custom LAN firewall rule to block ICMP traffic</li>
-            <li>Validated enforcement with a failed-ping test against the rule</li>
-          </ul>
-
-          <h4>Offensive Testing</h4>
-          <ul>
-            <li>Added a Kali Linux VM to the lab network</li>
-            <li>Ran Nmap host discovery and service scans against lab systems and documented findings</li>
-          </ul>
-
-          <h4>Intrusion Detection</h4>
-          <ul>
-            <li>Deployed Suricata IDS on pfSense via shell install after a GUI package-manager failure</li>
-            <li>Diagnosed a persistent inline/IPS divert-socket crash across four independent start methods, isolating it to a VirtualBox virtual NIC incompatibility</li>
-            <li>Closed out as a documented environment limitation with a clear root-cause writeup, rather than forcing an indefinite fix</li>
-          </ul>
-
-          <h4>Active Directory & Identity Management</h4>
-          <ul>
-            <li>Built a Windows Server 2025 Active Directory domain controller from scratch, promoting a new forest (fahadlab.local)</li>
-            <li>Joined a Linux client to the domain via realmd/SSSD, resolving a DNS resolver quirk and a Kerberos preauthentication failure</li>
-            <li>Configured Group Policy (domain password policy) and verified end-to-end AD/Linux identity integration</li>
-          </ul>
-
-          <div class="tool-tags">
-            <span>VirtualBox</span><span>pfSense</span><span>Ubuntu Server</span><span>Kali Linux</span>
-            <span>Nmap</span><span>Wireshark</span><span>Suricata</span><span>Splunk</span>
-            <span>Windows Server</span><span>Active Directory</span><span>PowerShell</span>
-          </div>
-
-          <div class="status-note">
-            This project is actively evolving — documented step-by-step on GitHub, including the troubleshooting
-            process itself (not just the finished result).
-          </div>
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="status"><span class="dot"></span>Open to SOC / Security Analyst roles · Relocation OK</div>
+        <h1>Syed Fahad Quadri<br><span class="grad">Security Analyst</span></h1>
+        <p class="lede">I triage SIEM alerts, investigate phishing and business email compromise, and turn vulnerability scans into prioritized fixes. Off the clock, I build and break a documented enterprise lab.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+            View projects
+          </a>
+          <a class="btn" href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.1ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13H3.5V9h3.6v11.4ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></svg>
+            LinkedIn
+          </a>
         </div>
       </div>
-    </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
+      <div class="term" aria-label="Terminal introduction">
+        <div class="term-bar"><i></i><i></i><i></i><span>fahad@soc-workstation: ~</span></div>
+        <pre id="term"><span class="t-p">$</span> whoami
+<span class="t-s">Security Analyst · SOC · Detection &amp; Response</span>
 
-      <div class="exp-item">
-        <div class="exp-top">
-          <h3>SOC Analyst Intern</h3>
-          <span class="exp-dates">Jan 2026 – Jun 2026</span>
-        </div>
-        <div class="exp-org">Unify Decoders LLC</div>
-        <ul>
-          <li>Triaged and analyzed 40+ daily security alerts in Splunk SIEM, achieving 90%+ accuracy in threat identification</li>
-          <li>Assisted with vulnerability assessments on 60+ network systems using Nessus and OpenVAS</li>
-          <li>Performed network traffic analysis using Wireshark and Nmap to investigate suspicious activity and identify IOCs</li>
-          <li>Supported response to security incidents, including forensic data collection and post-incident documentation</li>
-        </ul>
+<span class="t-p">$</span> cat focus.txt
+<span class="t-k">triage</span>     Splunk SIEM alerts, 40-50+/day
+<span class="t-k">investigate</span> phishing &amp; BEC, IOC analysis
+<span class="t-k">assess</span>     Nessus / OpenVAS findings
+<span class="t-k">analyze</span>    Wireshark / Nmap traffic
+
+<span class="t-p">$</span> ./lab --status
+<span class="t-c">[+]</span> pfSense firewall        <span class="t-p">online</span>
+<span class="t-c">[+]</span> AD DC fahadlab.local    <span class="t-p">online</span>
+<span class="t-c">[+]</span> Kali recon box          <span class="t-p">online</span>
+<span class="t-c">[!]</span> Suricata IDS            <span class="t-w">root-caused</span>
+
+<span class="t-p">$</span> <span class="caret"></span></pre>
       </div>
-
-      <div class="exp-item">
-        <div class="exp-top">
-          <h3>Security Analyst</h3>
-          <span class="exp-dates">Aug 2022 – Nov 2023</span>
-        </div>
-        <div class="exp-org">HHC Clinic</div>
-        <ul>
-          <li>Monitored and triaged 50+ security alerts daily using Splunk SIEM</li>
-          <li>Performed vulnerability scans on 150+ devices using Nessus and OpenVAS</li>
-          <li>Supported forensic data collection and documentation for phishing incidents; led staff security awareness training</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-top">
-          <h3>Cybersecurity Intern</h3>
-          <span class="exp-dates">Jan 2022 – Jun 2022</span>
-        </div>
-        <div class="exp-org">AICTE</div>
-        <ul>
-          <li>Completed hands-on training in network defense, threat identification, and secure system practices</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="credentials">
-      <h2>Education &amp; Certifications</h2>
-      <div class="two-col">
-        <div class="edu-card">
-          <h4>M.S., Cybersecurity Management</h4>
-          <p>Lindsey Wilson College, Tennessee, USA | 2024–2025</p>
-        </div>
-        <div class="edu-card">
-          <h4>B.S., Computer Science</h4>
-          <p>Osmania University, Hyderabad, India | 2019–2023</p>
-        </div>
-        <div class="cert-card">
-          <h4>CompTIA Security+</h4>
-          <p>Exam scheduled September 2026</p>
-          <span class="status-pill pill-progress">In Progress</span>
-        </div>
-        <div class="cert-card">
-          <h4>Google Cybersecurity Professional Certificate</h4>
-          <p>Issued by Google / Coursera</p>
-          <span class="status-pill pill-done">Completed</span>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <footer>
-    <h2>Let's Connect</h2>
-    <p>Open to entry-level SOC, MDR, and network security analyst roles. Reach out any time.</p>
-    <div class="footer-links">
-      <a href="mailto:syedfahadquadri09@gmail.com">Email Me</a>
-      <a href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">GitHub</a>
     </div>
-  </footer>
 
+    <div class="stats reveal">
+      <div class="stat"><b data-count="50">50+</b><span>SIEM alerts triaged daily</span></div>
+      <div class="stat"><b data-count="150">150+</b><span>systems scanned with Nessus / OpenVAS</span></div>
+      <div class="stat"><b data-count="25">25+</b><span>critical &amp; high-risk findings prioritized</span></div>
+      <div class="stat"><b data-count="8">8+</b><span>confirmed compromises escalated</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <div class="wrap about-grid reveal">
+      <div>
+        <div class="eyebrow">// about</div>
+        <h2>Calm under an alert queue.</h2>
+        <p>I'm a cybersecurity analyst with hands-on SOC experience across healthcare, client, and multi-tenant environments. My day-to-day has been triaging 40–50+ Splunk SIEM alerts, separating false positives from real threats, investigating phishing and business email compromise, and escalating confirmed compromises with documentation that holds up in an audit.</p>
+        <p>I also run vulnerability assessments with Nessus and OpenVAS, validate IDS/IPS indicators at the packet level with Wireshark and Nmap, and have hands-on exposure to Azure, AWS, and GCP security. I script in Python, Bash, and PowerShell.</p>
+        <p>Outside work I keep a fully documented home lab: firewall, attacker box, and an Active Directory domain. I write up every failure and root cause, not just the finished result.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>location</dt><dd>Kansas City, MO · open to relocation</dd></div>
+        <div><dt>focus</dt><dd>SOC · IR · Vulnerability Mgmt</dd></div>
+        <div><dt>education</dt><dd>M.S. Cybersecurity Management</dd></div>
+        <div><dt>certs</dt><dd>Google Cybersecurity ✓ · Security+ (Sep 2026)</dd></div>
+        <div><dt>compliance</dt><dd>HIPAA · PCI DSS · ISO · CIS</dd></div>
+        <div><dt>languages</dt><dd>English · Hindi · Urdu</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="lab">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// featured build</div>
+        <h2>An enterprise network in a box</h2>
+        <p class="sub">A virtualized lab built from scratch in VirtualBox: pfSense perimeter, Kali attacker, a domain-joined Linux client, and a Windows Server 2025 domain controller. Every step and failure is documented with screenshots.</p>
+      </div>
+      <div class="lab">
+        <div class="panel topo reveal" role="img" aria-label="Lab topology: internet to pfSense firewall, which connects Kali, Ubuntu client and Windows Server domain controller on 192.168.1.0/24">
+          <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#58a6ff"/></marker>
+            </defs>
+            <rect x="20" y="182" width="480" height="206" rx="14" fill="none" stroke="#223040" stroke-dasharray="4 5"/>
+            <text x="36" y="378" fill="#5c6b7a" font-size="11">labnet · 192.168.1.0/24</text>
+
+            <!-- internet -->
+            <circle cx="260" cy="36" r="24" fill="#16202b" stroke="#58a6ff"/>
+            <text x="260" y="40" fill="#e6edf3" font-size="11" text-anchor="middle">WAN</text>
+            <line x1="260" y1="60" x2="260" y2="92" stroke="#58a6ff" stroke-width="2" class="flow"/>
+
+            <!-- pfSense -->
+            <rect x="150" y="92" width="220" height="66" rx="10" fill="#121a23" stroke="#00c896" stroke-width="1.5"/>
+            <text x="260" y="116" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="middle">pfSense CE 2.7.2</text>
+            <text x="260" y="134" fill="#8b99a8" font-size="10.5" text-anchor="middle">firewall · NAT · DHCP · .1</text>
+            <text x="260" y="150" fill="#f2b84b" font-size="10" text-anchor="middle">ICMP block rule · Suricata</text>
+
+            <!-- links -->
+            <path d="M200 158 C200 205 95 205 95 250" fill="none" stroke="#00c896" stroke-width="1.6" class="flow"/>
+            <path d="M260 158 L260 250" fill="none" stroke="#00c896" stroke-width="1.6" class="flow"/>
+            <path d="M320 158 C320 205 425 205 425 250" fill="none" stroke="#00c896" stroke-width="1.6" class="flow"/>
+
+            <!-- kali -->
+            <rect x="30" y="250" width="130" height="64" rx="10" fill="#121a23" stroke="#ff6b6b"/>
+            <text x="95" y="274" fill="#e6edf3" font-size="12.5" font-weight="700" text-anchor="middle">Kali 2026.2</text>
+            <text x="95" y="291" fill="#8b99a8" font-size="10" text-anchor="middle">attacker / recon</text>
+            <text x="95" y="305" fill="#5c6b7a" font-size="10" text-anchor="middle">.101</text>
+
+            <!-- ubuntu -->
+            <rect x="195" y="250" width="130" height="64" rx="10" fill="#121a23" stroke="#58a6ff"/>
+            <text x="260" y="274" fill="#e6edf3" font-size="12.5" font-weight="700" text-anchor="middle">Ubuntu Server</text>
+            <text x="260" y="291" fill="#8b99a8" font-size="10" text-anchor="middle">domain-joined client</text>
+            <text x="260" y="305" fill="#5c6b7a" font-size="10" text-anchor="middle">.100</text>
+
+            <!-- DC -->
+            <rect x="360" y="250" width="130" height="64" rx="10" fill="#121a23" stroke="#d2a8ff"/>
+            <text x="425" y="274" fill="#e6edf3" font-size="12.5" font-weight="700" text-anchor="middle">Win Server 2025</text>
+            <text x="425" y="291" fill="#8b99a8" font-size="10" text-anchor="middle">AD DS + DNS · Core</text>
+            <text x="425" y="305" fill="#5c6b7a" font-size="10" text-anchor="middle">.102</text>
+
+            <!-- scans -->
+            <path d="M160 296 L193 296" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="3 4" marker-end="url(#arr)"/>
+            <text x="40" y="340" fill="#ff6b6b" font-size="10">nmap -sn / -sV</text>
+            <!-- kerberos -->
+            <path d="M325 282 L358 282" stroke="#d2a8ff" stroke-width="1.5" marker-end="url(#arr)" marker-start="url(#arr)"/>
+            <text x="300" y="340" fill="#d2a8ff" font-size="10">realmd · SSSD · Kerberos</text>
+            <text x="300" y="357" fill="#5c6b7a" font-size="10">domain: fahadlab.local</text>
+          </svg>
+        </div>
+
+        <div class="panel reveal">
+          <div class="eyebrow" style="margin-bottom:16px">// what broke &amp; how I fixed it</div>
+          <ul class="ts">
+            <li class="ok"><b>VM wouldn't boot: "CPU doesn't support long mode"</b><span>Windows VBS / Memory Integrity was holding VT-x. Disabled Core Isolation and verified with <code>msinfo32</code>.</span></li>
+            <li><b>Suricata crashed on start: <code>ipfw</code> divert-socket error</b><span>Tested 4 independent start paths, edited <code>config.xml</code> directly, and root-caused it to the VirtualBox virtual NIC. Closed as a documented limitation.</span></li>
+            <li class="ok"><b><code>realm discover</code> found no realm</b><span>Traced it to <code>systemd-resolved</code>'s handling of <code>.local</code>; pointed the resolver at the DC directly.</span></li>
+            <li class="ok"><b>Kerberos "Preauthentication failed" on domain join</b><span>A credential problem, not a network one: a special character mapped differently across keyboard layouts.</span></li>
+            <li class="ok"><b>Hardened the domain</b><span>GPO-backed password policy (min length 10, complexity, 90-day max age), verified with <code>Get-ADDefaultDomainPasswordPolicy</code>.</span></li>
+          </ul>
+          <div class="lab-foot">
+            <a class="btn" href="https://github.com/Fahad-Quadri/Home-lab-network-security" target="_blank" rel="noopener">Read the full write-up →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// projects</div>
+        <h2>Tools &amp; playbooks for the SOC</h2>
+        <p class="sub">Open-source work built around the problems I deal with during alert triage.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+          <h3>ioc-extractor</h3>
+          <p>Python CLI that pulls IPs, domains, URLs, emails, hashes and CVEs out of phishing emails and SIEM alerts. It refangs and defangs indicators and exports CSV for Splunk lookups.</p>
+          <pre>$ python ioc_extractor.py alert.txt --defang
+ipv4    203[.]0[.]113[.]45
+domain  secure-paymentportal[.]example
+sha256  9f86d081884c7d65…</pre>
+          <div class="tags"><span class="tag">Python</span><span class="tag">unit-tested</span><span class="tag">CI</span></div>
+          <a class="more" href="https://github.com/Fahad-Quadri/ioc-extractor" target="_blank" rel="noopener">view repo →</a>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <h3>splunk-detection-library</h3>
+          <p>Eight SPL detections covering brute force, password spraying, encoded PowerShell, log clearing, DNS tunneling and more. Each is mapped to MITRE ATT&amp;CK and comes with tuning notes and triage steps.</p>
+          <div class="tags"><span class="tag">Splunk SPL</span><span class="tag">Sysmon</span><span class="tag">ATT&amp;CK</span></div>
+          <a class="more" href="https://github.com/Fahad-Quadri/splunk-detection-library" target="_blank" rel="noopener">view repo →</a>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <h3>phishing-analysis-playbook</h3>
+          <p>End-to-end phishing and BEC investigation: evidence handling, SPF/DKIM/DMARC header analysis, IOC enrichment, scoping, containment, and an incident report template.</p>
+          <div class="tags"><span class="tag">Incident Response</span><span class="tag">BEC</span><span class="tag">HIPAA-aware</span></div>
+          <a class="more" href="https://github.com/Fahad-Quadri/phishing-analysis-playbook" target="_blank" rel="noopener">view repo →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// experience</div>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="timeline">
+        <div class="job reveal">
+          <div class="when">Jan 2026 – Aug 2026</div>
+          <div>
+            <h3>SOC Analyst Intern</h3>
+            <div class="org">Unify Decoders LLC</div>
+            <ul>
+              <li>Monitored 40+ daily Splunk SIEM alerts, applying SOP-based severity triage and threat modeling across sensitive client environments.</li>
+              <li>Evaluated 60+ network systems and prioritized 25+ critical and high-risk Nessus and OpenVAS findings to guide remediation.</li>
+              <li>Investigated suspicious activity with Wireshark and Nmap, validating IDS/IPS indicators at the packet level and escalating 8+ confirmed compromises.</li>
+              <li>Documented 3+ security incidents with forensic evidence and management-ready records supporting incident response reviews.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job reveal">
+          <div class="when">Aug 2022 – Nov 2023</div>
+          <div>
+            <h3>Security Analyst</h3>
+            <div class="org">HHC Clinic</div>
+            <ul>
+              <li>Triaged 50+ daily Splunk SIEM alerts across healthcare environments, resolving false positives and escalating phishing and business email compromise.</li>
+              <li>Scanned 150+ Windows and Linux systems with Nessus and OpenVAS, identifying EDR gaps and recommending remediation for HIPAA readiness and audits.</li>
+              <li>Investigated phishing incidents through privacy-aware evidence collection, producing audit-ready documentation for HIPAA reviews.</li>
+              <li>Contributed to clinic security policies documenting PCI DSS, ISO, and healthcare-aligned controls; supported DHCP, IPSec, and RADIUS.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job reveal">
+          <div class="when">Jan 2022 – Jun 2022</div>
+          <div>
+            <h3>Cybersecurity Intern</h3>
+            <div class="org">AICTE</div>
+            <ul>
+              <li>Configured and monitored hybrid Azure, AWS, and GCP infrastructure: TCP/IP, DNS analysis, identity controls, logging, VPC architecture, and segmentation.</li>
+              <li>Validated secure cloud and network configurations and documented change-control records using Terraform and PowerShell.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// toolkit</div>
+        <h2>Skills</h2>
+      </div>
+      <div class="skills">
+        <div class="panel skill reveal"><h3>SIEM &amp; Detection</h3><div class="tags"><span class="tag">Splunk</span><span class="tag">Microsoft Sentinel</span><span class="tag">Elastic</span><span class="tag">LogRhythm</span><span class="tag">SOAR</span><span class="tag">UEBA</span><span class="tag">MITRE ATT&amp;CK</span><span class="tag">Cyber Kill Chain</span></div></div>
+        <div class="panel skill reveal"><h3>EDR / XDR</h3><div class="tags"><span class="tag">CrowdStrike</span><span class="tag">SentinelOne</span><span class="tag">Cortex XDR</span><span class="tag">EDR · NDR · XDR</span></div></div>
+        <div class="panel skill reveal"><h3>Incident Response</h3><div class="tags"><span class="tag">Alert triage</span><span class="tag">Phishing &amp; BEC</span><span class="tag">IOC analysis</span><span class="tag">Threat hunting</span><span class="tag">Digital forensics</span><span class="tag">Post-incident docs</span></div></div>
+        <div class="panel skill reveal"><h3>Network &amp; Vulnerability</h3><div class="tags"><span class="tag">Wireshark</span><span class="tag">Nmap</span><span class="tag">Nessus</span><span class="tag">OpenVAS</span><span class="tag">pfSense</span><span class="tag">IDS/IPS</span><span class="tag">TCP/IP</span><span class="tag">VPN · IPSec</span><span class="tag">SD-WAN</span></div></div>
+        <div class="panel skill reveal"><h3>Cloud &amp; Systems</h3><div class="tags"><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">AKS</span><span class="tag">IAM</span><span class="tag">Active Directory</span><span class="tag">Linux</span><span class="tag">Windows Server</span></div></div>
+        <div class="panel skill reveal"><h3>Scripting &amp; GRC</h3><div class="tags"><span class="tag">Python</span><span class="tag">Bash</span><span class="tag">PowerShell</span><span class="tag">SQL</span><span class="tag">C++</span><span class="tag">HIPAA</span><span class="tag">PCI DSS</span><span class="tag">ISO</span><span class="tag">CIS Controls</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">// credentials</div>
+        <h2>Education &amp; certifications</h2>
+      </div>
+      <div class="creds">
+        <div class="panel cred reveal"><h3>M.S., Cybersecurity Management</h3><p>Lindsey Wilson University · Jan 2024 – Dec 2025</p><span class="pill edu">DEGREE</span></div>
+        <div class="panel cred reveal"><h3>Computer Science</h3><p>Osmania University · 2019 – 2023</p><span class="pill edu">DEGREE</span></div>
+        <div class="panel cred reveal"><h3>Google Cybersecurity Professional Certificate</h3><p>Google / Coursera</p><span class="pill done">COMPLETED</span></div>
+        <div class="panel cred reveal"><h3>CompTIA Security+</h3><p>Exam scheduled September 2026</p><span class="pill prog">IN PROGRESS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <div class="eyebrow">// contact</div>
+      <h2>Let's talk.</h2>
+      <p class="sub">Open to SOC Analyst, Security Analyst, MDR, and network security roles, in Kansas City or anywhere I can relocate.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:syedfahadquadri09@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          syedfahadquadri09@gmail.com
+        </a>
+        <a class="btn" href="tel:+18164990384">816-499-0384</a>
+        <a class="btn" href="https://www.linkedin.com/in/syed-fahad-quadri-8a796a3a8/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Fahad-Quadri" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Syed Fahad Quadri · Kansas City, MO</div>
+</footer>
+
+<script>
+  // Reveal sections on scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // Count-up for stats
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nums = document.querySelectorAll('[data-count]');
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target, end = +el.dataset.count, t0 = null;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / 1100, 1);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + '+';
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { io.observe(n); });
+  })();
+
+  // Type out the terminal once
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pre = document.getElementById('term');
+    if (reduce || !pre) return;
+    var html = pre.innerHTML, out = '', i = 0;
+    pre.innerHTML = '';
+    function tick() {
+      if (i >= html.length) { pre.innerHTML = html; return; }
+      if (html[i] === '<') { var j = html.indexOf('>', i); out += html.slice(i, j + 1); i = j + 1; }
+      else if (html[i] === '&') { var k = html.indexOf(';', i); out += html.slice(i, k + 1); i = k + 1; }
+      else { out += html[i++]; }
+      pre.innerHTML = out + '<span class="caret"></span>';
+      setTimeout(tick, html[i - 1] === '\n' ? 90 : 9);
+    }
+    setTimeout(tick, 350);
+  })();
+</script>
 </body>
 </html>
